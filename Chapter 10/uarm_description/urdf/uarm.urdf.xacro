@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+
+
+ <!-- uArm description -->
+  <robot name="uarm" params="3.14 *3.14">
+   <!--link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="uarm_base_link"/>
+  </joint-->
+    <link name="uarm_base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_base.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+         <material name="white">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+    <joint name="base_body_j" type="continuous">
+      <origin xyz="0 0 0" rpy="0 ${-3.14/2} 0"/>
+      <parent link="uarm_base_link"/>
+      <child link="uarm_body_link"/>
+    </joint>
+    <link name="uarm_body_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 ${3.14/2} 0" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_body.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+       
+ <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+    <joint name="body_upper_arm_j" type="continuous">
+      <origin xyz="0.069 0 0.021" rpy="-${3.14/2+0.624} 0 ${-3.14/2}"/>
+      <parent link="uarm_body_link"/>
+      <child link="uarm_upper_arm_link"/>
+    </joint>
+
+
+    <link name="uarm_upper_arm_link">
+      <visual>
+        <origin xyz="0 0 ${0}" rpy="0 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_upper_arm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+
+    <joint name="upper_arm_forearm_j" type="continuous">
+      <origin xyz="0 0.048 0.138 " rpy="${2.87} 0 0"/>
+      <parent link="uarm_upper_arm_link"/>
+      <child link="uarm_forearm_link"/>
+    </joint>
+
+
+
+
+   <link name="uarm_forearm_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_forearm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+    <joint name="forearm_wrist_j" type="continuous">
+      <origin xyz="0 -0.145 -0.068" rpy="${0.624-2.87} 0 0"/>
+      <parent link="uarm_forearm_link"/>
+      <child link="uarm_wrist_link"/>
+    </joint>
+
+
+
+    <link name="uarm_wrist_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_wrist.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+
+    <joint name="wrist_palm_j" type="continuous">
+      <origin xyz="0.0022 -0.036 -0.011" rpy=" ${-3.14/2} ${3.14/2} 0"/>
+      <parent link="uarm_wrist_link"/>
+      <child link="uarm_palm_link"/>
+    </joint>
+
+
+    <link name="uarm_palm_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${-3.14/2} 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_palm.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+         <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+
+    <joint name="palm_left_finger_j" type="continuous">
+      <origin xyz="0.035 -0.008 0 " rpy="0 ${3.14/2} 0"/>
+      <parent link="uarm_palm_link"/>
+      <child link="uarm_left_finger_link"/>
+    </joint>
+
+
+
+
+    <link name="uarm_left_finger_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${-3*3.14/2} 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_left_finger.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+    <joint name="palm_right_finger_j" type="continuous">
+      <origin xyz="0.035 0.008 0" rpy="0 ${3.14/2} 0"/>
+      <parent link="uarm_palm_link"/>
+      <child link="uarm_right_finger_link"/>
+    </joint>
+
+    <link name="uarm_right_finger_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${3.14/2} 0 ${3.14/2}" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_right_finger.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+         <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+      </visual>
+    </link>
+<!--
+    <link name="uarm_left_finger_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+    </link>
+-->
+ 
+
+</robot>

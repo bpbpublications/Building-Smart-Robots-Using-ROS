@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_arm_controller
+    joints:
+      - base_body_j
+      - body_upper_arm_j
+      - upper_arm_forearm_j
+      - forearm_wrist_j
+      - wrist_palm_j
+      - palm_right_finger_j
+  - name: fake_endeffector_controller
+    joints:
+      - palm_left_finger_j
+      - palm_right_finger_j

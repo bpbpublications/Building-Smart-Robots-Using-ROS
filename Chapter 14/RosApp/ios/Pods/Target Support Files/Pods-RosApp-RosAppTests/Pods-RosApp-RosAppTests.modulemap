@@ -1,0 +1,6 @@
+module Pods_RosApp_RosAppTests {
+  umbrella header "Pods-RosApp-RosAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

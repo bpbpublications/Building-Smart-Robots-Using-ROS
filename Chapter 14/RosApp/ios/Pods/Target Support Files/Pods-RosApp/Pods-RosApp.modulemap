@@ -1,0 +1,6 @@
+module Pods_RosApp {
+  umbrella header "Pods-RosApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

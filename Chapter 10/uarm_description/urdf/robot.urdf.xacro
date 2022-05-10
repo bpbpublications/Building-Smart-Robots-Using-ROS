@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="uarm_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- The following included files set up definitions of parts of the robot body -->
+<xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:include filename="$(find uarm_description)/urdf/uarm.urdf.xacro" />
+
+<!--
+  <xacro:include filename="$(find uarm_description)/urdf/camera.urdf.xacro" />
+-->
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find uarm_description)/urdf/uarm.gazebo" />-->
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find uarm_description)/urdf/materials.urdf.xacro" />
+
+  <!-- Now we can start using the macros included above to define the actual robot -->
+  <robot_base color1="Black" color2="Brown"/>
+
+  <!-- uarm -->
+    <link name="base_footprint">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="Green" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+         <box size="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_footprint"/>
+      <child link="base_link" />
+    </joint>
+    <link name="base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_suctions.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="Green" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+         <box size="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+     <inertial>
+        <origin xyz="0 0 0.1" rpy="0 0 0"/> 
+        <mass value="5"/>
+        <inertia 
+          ixx="10e-3" ixy="0.0" ixz="0.0" 
+          iyy="10e-3" iyz="0.0" 
+          izz="10e-3"/>
+      </inertial>
+    </link>
+<!--
+      <visual>
+        <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
+        <geometry>
+            <mesh filename="package://uarm_description/meshes/uarm_suctions.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+-->
+  <uarm color="Black" parent="base_link">
+    <origin xyz="0 0 0.000" rpy="0 0 ${M_PI}"/>
+  </uarm>
+
+
+  <!-- Camera -->
+<!--
+  <camera name="head_camera" parent="base_link">
+    <origin xyz="0 0 0.35" rpy="0 0 0"/>
+  </camera>
+-->
+
+
+  <!-- extensions -->
+ <!--   <xacro:uarm_base_gazebo /> -->
+
+</robot>
